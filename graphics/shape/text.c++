@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  **/
 
-#include "graphics/shape/label.h++"
+#include "graphics/shape/text.h++"
 
 #include "graphics/canvas.h++"
 
@@ -33,24 +33,26 @@ namespace skui
 {
   namespace graphics
   {
-    label::label(core::string text)
-      : text(text)
+    text::text(core::string characters)
+      : font_size(12)
+      , characters(characters)
+
     {}
 
-    label::~label() = default;
+    text::~text() = default;
 
-    void label::draw(canvas& canvas,
+    void text::draw(canvas& canvas,
                      const scalar_position& position) const
     {
-        canvas.draw(*this, position);
+      canvas.draw(*this, position);
     }
 
-    scalar_size label::implicit_size() const
+    scalar_size text::implicit_size() const
     {
       // Skia specific for now. This should be externalized somehow.
       SkPaint paint;
       SkRect bounds;
-      paint.measureText(text.c_str(), text.size(), &bounds);
+      paint.measureText(characters.c_str(), characters.size(), &bounds);
 
       return { bounds.width(), bounds.height() };
     }

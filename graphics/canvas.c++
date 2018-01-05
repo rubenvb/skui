@@ -54,14 +54,10 @@ namespace skui
                                        colors::cyan};
       circle.fill.gradient = std::make_unique<sweep_gradient>(center, rainbow);
 
-      label text_label("Hello Skui!");
-      text_label.fill.color = colors::white;
-
       draw(colors::black);
       draw(square, {10, 10});
       draw(marker, {10.5,10.5});
       draw(circle, {150, 150});
-      draw(text_label, {300, 300});
     }
 
     canvas::canvas(canvas_flags flags)
